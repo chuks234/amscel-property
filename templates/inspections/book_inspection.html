@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Book Inspection | AMSCEL PROPERTY LIMITED{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+
+    <h1>Book a Property Inspection</h1>
+
+    <p>
+        Choose a property and tell us when you would like
+        to inspect it.
+    </p>
+
+</section>
+
+
+<section class="section">
+
+    <div class="form-container">
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            {% for field in form %}
+
+            <div class="form-group">
+
+                {{ field.label_tag }}
+
+                {{ field }}
+
+                {% if field.errors %}
+
+                    <div>
+                        {{ field.errors }}
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+            {% endfor %}
+
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+            >
+                Submit Inspection Request
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Our Offices | AMSCEL PROPERTY LIMITED{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <h1>Our Offices</h1>
+        <p>Find our office locations and contact information.</p>
+    </div>
+</section>
+
+<section class="section">
+
+    <div class="section-inner">
+
+        <div class="office-grid">
+
+            {% for office in offices %}
+
+            <div class="office-card">
+
+                <h2>{{ office.name }}</h2>
+
+                <p>
+                    <strong>{{ office.get_office_type_display }}</strong>
+                </p>
+
+                <p>
+                    {{ office.address }}<br>
+                    {{ office.city }}, {{ office.state }}
+                </p>
+
+                {% if office.phone %}
+                <p>
+                    <strong>Phone:</strong>
+                    <a href="tel:{{ office.phone }}">
+                        {{ office.phone }}
+                    </a>
+                </p>
+                {% endif %}
+
+                {% if office.whatsapp %}
+                <p>
+                    <strong>WhatsApp:</strong>
+                    {{ office.whatsapp }}
+                </p>
+                {% endif %}
+
+                {% if office.email %}
+                <p>
+                    <strong>Email:</strong>
+                    <a href="mailto:{{ office.email }}">
+                        {{ office.email }}
+                    </a>
+                </p>
+                {% endif %}
+
+                {% if office.opening_hours %}
+                <p>
+                    <strong>Opening Hours:</strong><br>
+                    {{ office.opening_hours }}
+                </p>
+                {% endif %}
+
+                {% if office.google_maps_url %}
+                <a
+                    href="{{ office.google_maps_url }}"
+                    target="_blank"
+                    rel="noopener"
+                    class="btn btn-secondary"
+                >
+                    View on Google Maps
+                </a>
+                {% endif %}
+
+            </div>
+
+            {% empty %}
+
+            <div class="detail-box">
+
+                <h2>No Offices Available</h2>
+
+                <p>
+                    There are currently no active offices to display.
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

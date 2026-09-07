@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}Land for Sale | AMSCEL PROPERTY LIMITED{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <h1>Land for Sale</h1>
+
+        <p>
+            Explore available land opportunities from AMSCEL PROPERTY LIMITED.
+        </p>
+    </div>
+</section>
+
+
+<section class="section">
+
+    <div class="section-inner">
+
+        <div class="property-grid">
+
+            {% for property in properties %}
+
+            <article class="property-card">
+
+                {% for image in property.images.all %}
+
+                    {% if forloop.first %}
+
+                    <img
+                        src="{{ image.image.url }}"
+                        class="property-image"
+                        alt="{{ property.title }}"
+                    >
+
+                    {% endif %}
+
+                {% empty %}
+
+                    <div class="no-image">
+                        No image available
+                    </div>
+
+                {% endfor %}
+
+
+                <div class="property-content">
+
+                    <h3>{{ property.title }}</h3>
+
+                    <p class="property-location">
+                        Location: {{ property.location }}
+                    </p>
+
+                    <p>
+                        <strong>Plot Size:</strong>
+                        {{ property.plot_size }}
+                    </p>
+
+                    <p class="property-price">
+                        NGN {{ property.price|floatformat:0 }}
+                    </p>
+
+                    <p>
+                        <strong>Status:</strong>
+                        {{ property.get_status_display }}
+                    </p>
+
+
+                    <div>
+
+                        <a
+                            href="{% url 'property_detail' property.pk %}"
+                            class="btn btn-primary"
+                        >
+                            View Details
+                        </a>
+
+                        <a
+                            href="{% url 'book_inspection' %}?property={{ property.pk }}"
+                            class="btn btn-secondary"
+                        >
+                            Book Inspection
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            {% empty %}
+
+            <div class="detail-box">
+
+                <h2>No Land Available</h2>
+
+                <p>
+                    We currently have no available land listings.
+                    Please check back soon.
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

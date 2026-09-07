@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}{{ property.title }} | AMSCEL PROPERTY LIMITED{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+
+    <h1>{{ property.title }}</h1>
+
+    <p>Ì≥ç {{ property.location }}</p>
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-inner">
+
+        <div class="detail-grid">
+
+            <div class="detail-box">
+
+                {% for image in property.images.all %}
+
+                    {% if forloop.first %}
+
+                    <img
+                        src="{{ image.image.url }}"
+                        class="detail-image"
+                        alt="{{ property.title }}"
+                    >
+
+                    {% endif %}
+
+                {% empty %}
+
+                    <div class="no-image">
+                        No property image available
+                    </div>
+
+                {% endfor %}
+
+
+                <h2>Property Description</h2>
+
+                <p>
+                    {{ property.description }}
+                </p>
+
+
+                <h2>Document Information</h2>
+
+                <p>
+                    {{ property.document_information }}
+                </p>
+
+
+                <h2>Property Videos</h2>
+
+                {% for video in property.videos.all %}
+
+                    <video
+                        width="100%"
+                        controls
+                    >
+                        <source src="{{ video.video.url }}">
+                    </video>
+
+                {% empty %}
+
+                    <p>No video available.</p>
+
+                {% endfor %}
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <h2>Property Information</h2>
+
+
+                <div class="info-row">
+                    <strong>Price</strong><br>
+                    <span class="detail-price">
+                        ‚Ç¶{{ property.price|floatformat:0 }}
+                    </span>
+                </div>
+
+
+                <div class="info-row">
+                    <strong>Location</strong><br>
+                    {{ property.location }}
+                </div>
+
+
+                <div class="info-row">
+                    <strong>Plot Size</strong><br>
+                    {{ property.plot_size }}
+                </div>
+
+
+                <div class="info-row">
+                    <strong>Status</strong><br>
+                    {{ property.get_status_display }}
+                </div>
+
+
+                <div style="margin-top: 25px;">
+
+                    <a
+                        href="/inspections/?property={{ property.id }}"
+                        class="btn btn-primary"
+                    >
+                        Ì≥Ö Book Inspection
+                    </a>
+
+                    <a
+                        href="tel:+2340000000000"
+                        class="btn btn-secondary"
+                    >
+                        Ì≥û Call Us
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
