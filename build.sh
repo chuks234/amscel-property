@@ -8,7 +8,7 @@ python manage.py collectstatic --no-input
 python manage.py migrate
 
 python manage.py shell -c "
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
 import os
 
 User = get_user_model()
@@ -24,10 +24,17 @@ if username and password:
     user.is_active = True
     user.save()
 
-    if created:
-        print('Superuser created successfully.')
+    print('Superuser username:', user.username)
+    print('Is staff:', user.is_staff)
+    print('Is superuser:', user.is_superuser)
+    print('Is active:', user.is_active)
+
+    test_user = authenticate(username=username, password=password)
+
+    if test_user:
+        print('PASSWORD CHECK: SUCCESS')
     else:
-        print('Existing user updated to superuser successfully.')
+        print('PASSWORD CHECK: FAILED')
 else:
     print('Superuser credentials are missing.')
 "
