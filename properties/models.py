@@ -1,9 +1,11 @@
+
 from io import BytesIO
 
 from django.core.files.base import ContentFile
 from django.core.exceptions import ValidationError
 from django.core.validators import FileExtensionValidator
 from django.db import models
+from cloudinary.models import CloudinaryField
 from PIL import Image
 
 
@@ -55,8 +57,9 @@ class PropertyImage(models.Model):
         related_name="images"
     )
 
-    image = models.ImageField(
-        upload_to="properties/images/"
+    image = CloudinaryField(
+        "image",
+        folder="properties/images"
     )
 
     caption = models.CharField(
@@ -149,8 +152,10 @@ class PropertyVideo(models.Model):
         related_name="videos"
     )
 
-    video = models.FileField(
-        upload_to="properties/videos/",
+    video = CloudinaryField(
+        "video",
+        resource_type="video",
+        folder="properties/videos",
         validators=[
             FileExtensionValidator(
                 allowed_extensions=["mp4", "webm", "mov"],
@@ -181,3 +186,4 @@ class PropertyVideo(models.Model):
     class Meta:
         verbose_name = "Property Video"
         verbose_name_plural = "Property Videos"
+
