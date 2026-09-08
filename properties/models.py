@@ -1,4 +1,10 @@
+from io import BytesIO
+
+from django.core.files.base import ContentFile
+from django.core.exceptions import ValidationError
+from django.core.validators import FileExtensionValidator
 from django.db import models
+from PIL import Image
 
 
 class Property(models.Model):
@@ -48,9 +54,85 @@ class PropertyImage(models.Model):
         on_delete=models.CASCADE,
         related_name="images"
     )
-    image = models.ImageField(upload_to="properties/images/")
-    caption = models.CharField(max_length=200, blank=True)
-    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    image = models.ImageField(
+        upload_to="properties/images/"
+    )
+
+    caption = models.CharField(
+        max_length=200,
+        blank=True
+    )
+
+    uploaded_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    def save(self, *args, **kwargs):
+        if self.image:
+            try:
+                img = Image.open(self.image)
+
+                # Convert images with transparency to RGB safely
+                if img.mode in ("RGBA", "LA", "P"):
+                    background = Image.new(
+                        "RGB",
+                        img.size,
+                        "white"
+                    )
+
+                    if img.mode == "P":
+                        img = img.convert("RGBA")
+
+                    background.paste(
+                        img,
+                        mask=img.getchannel("A")
+                        if img.mode == "RGBA"
+                        else None
+                    )
+
+                    img = background
+
+                else:
+                    img = img.convert("RGB")
+
+                # Maximum image size
+                max_width = 1600
+                max_height = 1200
+
+                img.thumbnail(
+                    (max_width, max_height),
+                    Image.Resampling.LANCZOS
+                )
+
+                # Save compressed JPEG
+                output = BytesIO()
+
+                img.save(
+                    output,
+                    format="JPEG",
+                    quality=82,
+                    optimize=True
+                )
+
+                output.seek(0)
+
+                # Always save the processed image as .jpg
+                filename = self.image.name.rsplit("/", 1)[-1]
+                filename = filename.rsplit(".", 1)[0] + ".jpg"
+
+                self.image.save(
+                    filename,
+                    ContentFile(output.read()),
+                    save=False
+                )
+
+            except Exception as e:
+                raise ValidationError(
+                    f"Unable to process the uploaded image: {e}"
+                )
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"Image - {self.property.title}"
@@ -66,8 +148,32 @@ class PropertyVideo(models.Model):
         on_delete=models.CASCADE,
         related_name="videos"
     )
-    video = models.FileField(upload_to="properties/videos/")
-    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    video = models.FileField(
+        upload_to="properties/videos/",
+        validators=[
+            FileExtensionValidator(
+                allowed_extensions=["mp4", "webm", "mov"],
+                message="Please upload a valid video file (MP4, WebM, or MOV)."
+            )
+        ]
+    )
+
+    uploaded_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    def clean(self):
+        super().clean()
+
+        if self.video:
+            max_size = 50 * 1024 * 1024  # 50 MB
+
+            if self.video.size > max_size:
+                raise ValidationError(
+                    "Video file is too large. "
+                    "Please upload a video smaller than 50 MB."
+                )
 
     def __str__(self):
         return f"Video - {self.property.title}"
