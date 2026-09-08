@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     "inspections",
     "accounts",
     "website",
+
+    # CLOUDINARY
+    "cloudinary",
 ]
 
 
@@ -120,6 +123,14 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_URL = "/media/"
 
 MEDIA_ROOT = BASE_DIR / "media"
+
+
+# CLOUDINARY
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME", "ba90ek5l"),
+    "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
+    "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
+}
 
 
 # DEFAULT PRIMARY KEY
