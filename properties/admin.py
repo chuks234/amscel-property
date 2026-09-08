@@ -1,4 +1,7 @@
 from django.contrib import admin
+admin.site.site_header = "AMSCEL PROPERTY LIMITED"
+admin.site.site_title = "AMSCEL Property Limited"
+admin.site.index_title = "AMSCEL PROPERTY LIMITED Administration"
 from .models import Property, PropertyImage, PropertyVideo
 
 

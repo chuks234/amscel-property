@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
 from offices.models import Office
 from properties.models import Property
+from enquiries.models import Enquiry
 
 
 def home(request):
@@ -22,13 +24,21 @@ def about(request):
 
 
 def contact(request):
-    offices = Office.objects.filter(is_active=True)
+    if request.method == "POST":
+        Enquiry.objects.create(
+            name=request.POST.get("name"),
+            phone=request.POST.get("phone"),
+            email=request.POST.get("email"),
+            message=request.POST.get("message"),
+        )
 
-    return render(
-        request,
-        "website/contact.html",
-        {"offices": offices}
-    )
+        return redirect("contact_success")
+
+    return render(request, "website/contact.html")
+
+
+def contact_success(request):
+    return render(request, "website/contact_success.html")
 
 
 def offices(request):
