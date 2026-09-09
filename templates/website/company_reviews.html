@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Client Reviews | AMSCEL PROPERTY LIMITED{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <div class="section-inner">
+
+        <div class="section-title">
+
+            <h1>What Our Clients Say</h1>
+
+            <p>
+                Read reviews and experiences shared by our clients.
+            </p>
+
+        </div>
+
+
+        <div class="property-grid">
+
+            {% for review in reviews %}
+
+            <div class="detail-box">
+
+                <h3>{{ review.name }}</h3>
+
+                <p>
+                    {% if review.rating == 5 %}
+                        ★★★★★
+                    {% elif review.rating == 4 %}
+                        ★★★★☆
+                    {% elif review.rating == 3 %}
+                        ★★★☆☆
+                    {% elif review.rating == 2 %}
+                        ★★☆☆☆
+                    {% else %}
+                        ★☆☆☆☆
+                    {% endif %}
+                </p>
+
+                {% if review.comment %}
+                <p>
+                    "{{ review.comment }}"
+                </p>
+                {% endif %}
+
+                <small>
+                    {{ review.created_at|date:"d M Y" }}
+                </small>
+
+            </div>
+
+            {% empty %}
+
+            <p>
+                No client reviews yet. Be the first to share
+                your experience with AMSCEL PROPERTY LIMITED.
+            </p>
+
+            {% endfor %}
+
+        </div>
+
+
+        <div class="hero-buttons">
+
+            <a
+                href="{% url 'rate_amscel' %}"
+                class="btn btn-primary"
+            >
+                Rate AMSCEL
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

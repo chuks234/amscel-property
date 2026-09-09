@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from offices.models import Office
 from properties.models import Property
 from enquiries.models import Enquiry
+from .forms import CompanyReviewForm
+from .models import CompanyReview
 
 
 def home(request):
@@ -53,3 +55,31 @@ def offices(request):
 
 def houses(request):
     return render(request, "properties/house_list.html")
+
+
+def company_reviews(request):
+    reviews = CompanyReview.objects.all()
+
+    return render(
+        request,
+        "website/company_reviews.html",
+        {"reviews": reviews}
+    )
+
+
+def rate_amscel(request):
+    if request.method == "POST":
+        form = CompanyReviewForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect("company_reviews")
+
+    else:
+        form = CompanyReviewForm()
+
+    return render(
+        request,
+        "website/rate_amscel.html",
+        {"form": form}
+    )
