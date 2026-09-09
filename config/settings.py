@@ -25,6 +25,10 @@ ALLOWED_HOSTS = [
     if host.strip()
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://amscel-property-production.up.railway.app",
+]
+
 
 # APPLICATIONS
 INSTALLED_APPS = [
