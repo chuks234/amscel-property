@@ -72,9 +72,9 @@ class PropertyImage(models.Model):
     )
 
     def save(self, *args, **kwargs):
-        if self.image:
+        if self.image and hasattr(self.image, "file"):
             try:
-                img = Image.open(self.image)
+                img = Image.open(self.image.file)
 
                 # Convert images with transparency to RGB safely
                 if img.mode in ("RGBA", "LA", "P"):
@@ -120,14 +120,13 @@ class PropertyImage(models.Model):
 
                 output.seek(0)
 
-                # Always save the processed image as .jpg
+                # Replace the uploaded file with the processed JPEG
                 filename = self.image.name.rsplit("/", 1)[-1]
                 filename = filename.rsplit(".", 1)[0] + ".jpg"
 
-                self.image.save(
-                    filename,
-                    ContentFile(output.read()),
-                    save=False
+                self.image.file = ContentFile(
+                    output.read(),
+                    name=filename
                 )
 
             except Exception as e:
