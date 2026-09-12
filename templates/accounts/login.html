@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div style="
+    min-height:80vh;
+    padding:50px 20px;
+    background:#f7f8fa;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    box-sizing:border-box;
+">
+
+```
+<div style="
+    width:100%;
+    max-width:430px;
+    background:#ffffff;
+    padding:35px;
+    box-sizing:border-box;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    box-shadow:0 8px 25px rgba(16,42,67,0.08);
+    margin:0 auto;
+    text-align:center;
+">
+
+    <h1 style="
+        color:#102a43;
+        font-size:26px;
+        font-weight:700;
+        margin:0 0 8px;
+    ">
+        Login
+    </h1>
+
+    <p style="
+        color:#6b7280;
+        font-size:14px;
+        margin:0 0 28px;
+        line-height:1.5;
+    ">
+        Login to access your account.
+    </p>
+
+
+    <form method="post" style="
+        width:100%;
+        text-align:center;
+    ">
+
+        {% csrf_token %}
+
+        {{ form.non_field_errors }}
+
+
+        <div style="
+            width:100%;
+            margin-bottom:18px;
+        ">
+
+            <label
+                for="{{ form.username.id_for_label }}"
+                style="
+                    display:block;
+                    width:320px;
+                    max-width:100%;
+                    margin:0 auto 6px;
+                    color:#102a43;
+                    font-size:14px;
+                    font-weight:600;
+                    text-align:left;
+                "
+            >
+                Username
+            </label>
+
+            {{ form.username }}
+
+            {{ form.username.errors }}
+
+        </div>
+
+
+        <div style="
+            width:100%;
+            margin-bottom:20px;
+        ">
+
+            <label
+                for="{{ form.password.id_for_label }}"
+                style="
+                    display:block;
+                    width:320px;
+                    max-width:100%;
+                    margin:0 auto 6px;
+                    color:#102a43;
+                    font-size:14px;
+                    font-weight:600;
+                    text-align:left;
+                "
+            >
+                Password
+            </label>
+
+            {{ form.password }}
+
+            {{ form.password.errors }}
+
+        </div>
+
+
+        {% if next %}
+            <input
+                type="hidden"
+                name="next"
+                value="{{ next }}"
+            >
+        {% endif %}
+
+
+        <button
+            type="submit"
+            style="
+                display:block;
+                width:320px;
+                max-width:100%;
+                margin:22px auto 0;
+                padding:11px 18px;
+                box-sizing:border-box;
+                border:none;
+                border-radius:7px;
+                background:#102a43;
+                color:#ffffff;
+                font-size:14px;
+                font-weight:600;
+                cursor:pointer;
+            "
+        >
+            Login
+        </button>
+
+    </form>
+
+
+    <p style="
+        text-align:center;
+        color:#6b7280;
+        font-size:14px;
+        margin:22px 0 0;
+    ">
+        Don't have an account?
+
+        <a
+            href="{% url 'accounts:register' %}"
+            style="
+                color:#102a43;
+                font-weight:600;
+                text-decoration:none;
+            "
+        >
+            Create an account
+        </a>
+    </p>
+
+</div>
+```
+
+</div>
+
+{% endblock %}

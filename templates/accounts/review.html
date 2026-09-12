@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="account-container">
+
+```
+{% if existing_review %}
+    <h1>Edit Your Review</h1>
+
+    <p>
+        Update your rating and review of
+        <strong>AMSCEL Property Limited</strong>.
+    </p>
+{% else %}
+    <h1>Rate & Review AMSCEL Property Limited</h1>
+
+    <p>
+        Share your experience with AMSCEL Property Limited.
+    </p>
+{% endif %}
+
+
+<div class="account-section">
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        {{ form.non_field_errors }}
+
+        <div class="form-group">
+
+            <label for="{{ form.rating.id_for_label }}">
+                Rating
+            </label>
+
+            {{ form.rating }}
+
+            {% if form.rating.errors %}
+                <div class="form-error">
+                    {{ form.rating.errors }}
+                </div>
+            {% endif %}
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="{{ form.comment.id_for_label }}">
+                Your Review
+            </label>
+
+            {{ form.comment }}
+
+            {% if form.comment.errors %}
+                <div class="form-error">
+                    {{ form.comment.errors }}
+                </div>
+            {% endif %}
+
+        </div>
+
+
+        <button type="submit">
+            {% if existing_review %}
+                Update Review
+            {% else %}
+                Submit Review
+            {% endif %}
+        </button>
+
+    </form>
+
+</div>
+
+
+<p>
+    <a href="{% url 'accounts:dashboard' %}">
+        Back to My Account
+    </a>
+</p>
+```
+
+</div>
+
+{% endblock %}

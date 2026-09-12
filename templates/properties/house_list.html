@@ -1,114 +1,123 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Houses | AMSCEL PROPERTY LIMITED</title>
+{% extends "base.html" %}
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f7f7f7;
-            color: #222;
-        }
+{% block title %}Houses | AMSCEL PROPERTY LIMITED{% endblock %}
 
-        header {
-            background: #111;
-            padding: 15px 40px;
-        }
+{% block content %}
 
-        nav {
-            max-width: 1200px;
-            margin: auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+<section class="section">
 
-        .logo {
-            height: 65px;
-            width: auto;
-            background: white;
-        }
+```
+<div class="section-inner">
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-        }
-
-        .page {
-            max-width: 1100px;
-            margin: auto;
-            padding: 70px 20px;
-            text-align: center;
-        }
-
-        .notice {
-            background: white;
-            padding: 50px 25px;
-            border-radius: 12px;
-        }
-
-        footer {
-            background: #111;
-            color: white;
-            text-align: center;
-            padding: 30px;
-        }
-    </style>
-</head>
-
-<body>
-
-<header>
-    <nav>
-        <a href="/">
-            <img src="/static/images/amscel-logo.jpg"
-                 class="logo"
-                 alt="AMSCEL PROPERTY LIMITED">
-        </a>
-
-        <div>
-            <a href="/">Home</a>
-            <a href="/land/">Land</a>
-            <a href="/houses/">Houses</a>
-            <a href="/about/">About</a>
-            <a href="/offices/">Offices</a>
-            <a href="/contact/">Contact</a>
-        </div>
-    </nav>
-</header>
-
-<main class="page">
-
-    <div class="notice">
+    <div class="section-title">
 
         <h1>Houses</h1>
 
-        <h2>Coming Soon</h2>
-
         <p>
-            Our house listings will be available here soon.
-        </p>
-
-        <p>
-            For now, explore our available land opportunities.
-        </p>
-
-        <p>
-            <a href="/land/">View Land for Sale</a>
+            Explore our available houses from
+            AMSCEL PROPERTY LIMITED.
         </p>
 
     </div>
 
-</main>
+    <div class="property-grid">
 
-<footer>
-    <p>© 2026 AMSCEL PROPERTY LIMITED</p>
-    <p>Abuja, Nigeria</p>
-</footer>
+        {% for property in houses %}
 
-</body>
-</html>
+        <article class="property-card">
+
+            {% for image in property.images.all %}
+
+                {% if forloop.first %}
+
+                <img
+                    src="{{ image.image.url }}"
+                    class="property-image"
+                    alt="{{ property.title }}"
+                >
+
+                {% endif %}
+
+            {% empty %}
+
+                <div class="no-image">
+                    No property image available.
+                </div>
+
+            {% endfor %}
+
+            <div class="property-content">
+
+                <h3>{{ property.title }}</h3>
+
+                <p class="property-location">
+                    {{ property.location }}
+                </p>
+
+                <p class="property-price">
+                    ₦{{ property.price|floatformat:0 }}
+                </p>
+
+                {% if property.plot_size %}
+
+                <p>
+                    <strong>Property Size:</strong>
+                    {{ property.plot_size }}
+                </p>
+
+                {% endif %}
+
+                {% if property.description %}
+
+                <p>
+                    {{ property.description|truncatewords:30 }}
+                </p>
+
+                {% endif %}
+
+                <p>
+                    <strong>Status:</strong>
+                    {{ property.get_status_display }}
+                </p>
+
+                <a
+                    href="{% url 'property_detail' property.pk %}"
+                    class="btn btn-primary"
+                >
+                    View Property
+                </a>
+
+            </div>
+
+        </article>
+
+        {% empty %}
+
+        <div class="detail-box">
+
+            <h2>No Houses Available</h2>
+
+            <p>
+                There are currently no available houses.
+                Please check back again in the future.
+            </p>
+
+            <a
+                href="/land/"
+                class="btn btn-primary"
+            >
+                View Land for Sale
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+</section>
+
+{% endblock %}

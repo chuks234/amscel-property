@@ -54,7 +54,16 @@ def offices(request):
 
 
 def houses(request):
-    return render(request, "properties/house_list.html")
+    houses = Property.objects.filter(
+        property_type="house",
+        status="available"
+    )
+
+    return render(
+        request,
+        "properties/house_list.html",
+        {"houses": houses}
+    )
 
 
 def company_reviews(request):

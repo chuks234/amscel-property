@@ -1,0 +1,134 @@
+
+{% extends "base.html" %}
+
+{% block title %}Career | AMSCEL PROPERTY LIMITED{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <div class="section-inner">
+
+        <div class="section-title">
+
+            <h1>Career Opportunities</h1>
+
+            <p>
+                Explore available career opportunities at
+                AMSCEL PROPERTY LIMITED.
+            </p>
+
+        </div>
+
+
+        {% if positions %}
+
+            {% for position in positions %}
+
+            <div class="detail-box">
+
+                <h2>{{ position.title }}</h2>
+
+                {% if position.department %}
+                <p>
+                    <strong>Department:</strong>
+                    {{ position.department }}
+                </p>
+                {% endif %}
+
+                <p>
+                    <strong>Location:</strong>
+                    {{ position.location }}
+                </p>
+
+                <p>
+                    <strong>Employment Type:</strong>
+                    {{ position.employment_type }}
+                </p>
+
+                {% if position.application_deadline %}
+                <p>
+                    <strong>Application Deadline:</strong>
+                    {{ position.application_deadline }}
+                </p>
+                {% endif %}
+
+
+                <h3>Job Description</h3>
+
+                <p>
+                    {{ position.description|linebreaksbr }}
+                </p>
+
+
+                <h3>Requirements</h3>
+
+                <p>
+                    {{ position.requirements|linebreaksbr }}
+                </p>
+
+
+                <details>
+
+                    <summary class="apply-link">
+                        Apply for This Position
+                    </summary>
+
+
+                    <div class="form-container">
+
+                        <h2>Submit Your Application</h2>
+
+                        <p>
+                            Complete the form below and submit your CV.
+                        </p>
+
+
+                        <form
+                            method="POST"
+                            enctype="multipart/form-data"
+                        >
+
+                            {% csrf_token %}
+
+                            {{ form.as_p }}
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                            >
+                                Submit Application
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </details>
+
+            </div>
+
+            {% endfor %}
+
+
+        {% else %}
+
+        <div class="detail-box career-position">
+
+                <h2>No Current Vacancies</h2>
+
+                <p>
+                    There are currently no available positions.
+                    Please check back again in the future.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}
+

@@ -14,6 +14,22 @@ urlpatterns = [
         "inspections/",
         include("inspections.urls")
     ),
+
+    path(
+        "account/",
+        include("accounts.urls")
+    ),
+
+    path(
+        "investment/",
+        include("investments.urls")
+    ),
+    
+    path(
+        "career/",
+        include("careers.urls")
+    ),
+   
 ]
 
 if settings.DEBUG:

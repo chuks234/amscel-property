@@ -1,0 +1,275 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div style="
+    min-height:80vh;
+    padding:50px 20px;
+    background:#f7f8fa;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    box-sizing:border-box;
+">
+
+```
+<div style="
+    width:100%;
+    max-width:430px;
+    background:#ffffff;
+    padding:35px;
+    box-sizing:border-box;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    box-shadow:0 8px 25px rgba(16,42,67,0.08);
+    margin:0 auto;
+    text-align:center;
+">
+
+    <h1 style="
+        color:#102a43;
+        font-size:26px;
+        font-weight:700;
+        margin:0 0 8px;
+    ">
+        Create Your Account
+    </h1>
+
+    <p style="
+        color:#6b7280;
+        font-size:14px;
+        margin:0 0 28px;
+        line-height:1.5;
+    ">
+        Create an account to manage your property activities.
+    </p>
+
+
+    <form method="post" style="
+        width:100%;
+        text-align:center;
+    ">
+
+        {% csrf_token %}
+
+        {{ form.non_field_errors }}
+
+
+        <div style="
+            width:100%;
+            margin-bottom:16px;
+        ">
+
+            <label
+                for="{{ form.first_name.id_for_label }}"
+                style="
+                    display:block;
+                    width:320px;
+                    max-width:100%;
+                    margin:0 auto 6px;
+                    color:#102a43;
+                    font-size:14px;
+                    font-weight:600;
+                    text-align:left;
+                "
+            >
+                First name
+            </label>
+
+            {{ form.first_name }}
+
+            {{ form.first_name.errors }}
+
+        </div>
+
+
+        <div style="
+            width:100%;
+            margin-bottom:16px;
+        ">
+
+            <label
+                for="{{ form.last_name.id_for_label }}"
+                style="
+                    display:block;
+                    width:320px;
+                    max-width:100%;
+                    margin:0 auto 6px;
+                    color:#102a43;
+                    font-size:14px;
+                    font-weight:600;
+                    text-align:left;
+                "
+            >
+                Last name
+            </label>
+
+            {{ form.last_name }}
+
+            {{ form.last_name.errors }}
+
+        </div>
+
+
+        <div style="
+            width:100%;
+            margin-bottom:16px;
+        ">
+
+            <label
+                for="{{ form.username.id_for_label }}"
+                style="
+                    display:block;
+                    width:320px;
+                    max-width:100%;
+                    margin:0 auto 6px;
+                    color:#102a43;
+                    font-size:14px;
+                    font-weight:600;
+                    text-align:left;
+                "
+            >
+                Username
+            </label>
+
+            {{ form.username }}
+
+            {{ form.username.errors }}
+
+        </div>
+
+
+        <div style="
+            width:100%;
+            margin-bottom:16px;
+        ">
+
+            <label
+                for="{{ form.email.id_for_label }}"
+                style="
+                    display:block;
+                    width:320px;
+                    max-width:100%;
+                    margin:0 auto 6px;
+                    color:#102a43;
+                    font-size:14px;
+                    font-weight:600;
+                    text-align:left;
+                "
+            >
+                Email
+            </label>
+
+            {{ form.email }}
+
+            {{ form.email.errors }}
+
+        </div>
+
+
+        <div style="
+            width:100%;
+            margin-bottom:16px;
+        ">
+
+            <label
+                for="{{ form.password1.id_for_label }}"
+                style="
+                    display:block;
+                    width:320px;
+                    max-width:100%;
+                    margin:0 auto 6px;
+                    color:#102a43;
+                    font-size:14px;
+                    font-weight:600;
+                    text-align:left;
+                "
+            >
+                Password
+            </label>
+
+            {{ form.password1 }}
+
+            {{ form.password1.errors }}
+
+        </div>
+
+
+        <div style="
+            width:100%;
+            margin-bottom:20px;
+        ">
+
+            <label
+                for="{{ form.password2.id_for_label }}"
+                style="
+                    display:block;
+                    width:320px;
+                    max-width:100%;
+                    margin:0 auto 6px;
+                    color:#102a43;
+                    font-size:14px;
+                    font-weight:600;
+                    text-align:left;
+                "
+            >
+                Password confirmation
+            </label>
+
+            {{ form.password2 }}
+
+            {{ form.password2.errors }}
+
+        </div>
+
+
+        <button
+            type="submit"
+            style="
+                display:block;
+                width:320px;
+                max-width:100%;
+                margin:22px auto 0;
+                padding:11px 18px;
+                box-sizing:border-box;
+                border:none;
+                border-radius:7px;
+                background:#102a43;
+                color:#ffffff;
+                font-size:14px;
+                font-weight:600;
+                cursor:pointer;
+            "
+        >
+            Create Account
+        </button>
+
+    </form>
+
+
+    <p style="
+        text-align:center;
+        color:#6b7280;
+        font-size:14px;
+        margin:22px 0 0;
+    ">
+        Already have an account?
+
+        <a
+            href="{% url 'accounts:login' %}"
+            style="
+                color:#102a43;
+                font-weight:600;
+                text-decoration:none;
+            "
+        >
+            Login
+        </a>
+    </p>
+
+</div>
+```
+
+</div>
+
+{% endblock %}

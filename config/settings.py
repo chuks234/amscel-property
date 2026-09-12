@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     "inspections",
     "accounts",
     "website",
+    "investments",
+    "careers",
 
     # CLOUDINARY
     "cloudinary",

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Investment | AMSCEL PROPERTY LIMITED{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <div class="section-inner">
+
+        <div class="section-title">
+
+            <h1>Investment</h1>
+
+            <p>
+                Complete the form below to enquire about investment
+                opportunities with AMSCEL PROPERTY LIMITED.
+            </p>
+
+        </div>
+
+        <div class="form-container">
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <button type="submit" class="btn btn-primary">
+                    Submit Investment Application
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

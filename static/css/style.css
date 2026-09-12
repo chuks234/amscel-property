@@ -775,3 +775,212 @@ main span {
 .detail-image {
     background: transparent;
 }
+
+/* CAREER APPLICATION LINK */
+
+.apply-link {
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    background: #18202b;
+    color: #ffffff;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-weight: bold;
+    list-style: none;
+}
+
+.apply-link::-webkit-details-marker {
+    display: none;
+}
+
+.apply-link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+/* =========================
+   INVESTMENT AND CAREER FORMS
+   ========================= */
+
+/* CENTER INVESTMENT FORM */
+
+.form-container {
+    width: 100%;
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 35px 40px;
+    text-align: left;
+}
+
+
+/* ORGANIZE DJANGO FORM FIELDS */
+
+.form-container form p {
+    margin: 0 0 22px;
+}
+
+.form-container form p label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.form-container form input,
+.form-container form textarea,
+.form-container form select {
+    display: block;
+    width: 100%;
+    padding: 13px 14px;
+    margin: 0;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #222222;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-container form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+
+/* FILE UPLOAD */
+
+.form-container form input[type="file"] {
+    padding: 10px;
+}
+
+
+/* FORM BUTTON */
+
+.form-container form .btn {
+    display: block;
+    margin: 25px auto 0;
+    cursor: pointer;
+    border: none;
+}
+
+
+/* =========================
+   CAREER JOB POSITIONS
+   ========================= */
+
+.career-position {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 30px;
+    padding: 30px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+
+/* CAREER POSITION HEADINGS */
+
+.career-position h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.career-position h3 {
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+
+/* CAREER POSITION DETAILS */
+
+.career-position p {
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+
+/* APPLY BUTTON AREA */
+
+.career-position details {
+    margin-top: 25px;
+}
+
+.career-position .apply-link {
+    display: inline-block;
+    cursor: pointer;
+    background: #18202b;
+    color: #ffffff;
+    padding: 11px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    list-style: none;
+    text-decoration: none;
+}
+
+.career-position .apply-link:hover {
+    background: #2d3744;
+    text-decoration: none;
+}
+
+
+/* HIDE DEFAULT DETAILS MARKER */
+
+.career-position .apply-link::-webkit-details-marker {
+    display: none;
+}
+
+
+/* CAREER APPLICATION FORM */
+
+.career-position .form-container {
+    max-width: 700px;
+    margin: 25px auto 5px;
+    padding: 35px 40px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+}
+
+
+/* CAREER FORM HEADING */
+
+.career-position .form-container h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+
+/* CAREER FORM DESCRIPTION */
+
+.career-position .form-container p {
+    line-height: normal;
+}
+
+
+/* CAREER FORM LABELS */
+
+.career-position .form-container form p label {
+    color: #ffffff;
+}
+
+
+/* =========================
+   MOBILE FORM ADJUSTMENTS
+   ========================= */
+
+@media (max-width: 700px) {
+
+    .form-container {
+        max-width: 100%;
+        padding: 25px 20px;
+    }
+
+    .career-position {
+        padding: 22px 18px;
+    }
+
+    .career-position .form-container {
+        padding: 25px 20px;
+    }
+
+}
