@@ -1098,23 +1098,232 @@ main span {
     text-decoration: underline;
 }
 
-@media (max-width: 900px) {
+/* =========================
+   MOBILE RESPONSIVE FIXES
+   ========================= */
 
-    .leadership-grid {
-        grid-template-columns: repeat(2, 1fr);
+   @media (max-width: 700px) {
+
+    /* HEADER */
+
+    .navbar {
+        padding: 12px 10px;
+        gap: 10px;
     }
 
-}
+    .brand {
+        width: 100%;
+    }
 
-@media (max-width: 600px) {
+    .brand img {
+        width: 120px;
+    }
 
-    .leadership-grid {
+    .nav-area {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .navbar nav {
+        width: 100%;
+        margin-left: 0;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .navbar nav a {
+        font-size: 12px;
+    }
+
+    .admin-link {
+        font-size: 12px;
+        padding: 9px 14px;
+    }
+
+    .header-moving-text {
+        width: 100%;
+        margin-top: 6px;
+    }
+
+    .header-moving-text span {
+        font-size: 12px;
+    }
+
+
+    /* REVIEW LINKS */
+
+    .review-links {
+        width: 100%;
+        justify-content: center;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        padding: 45px 15px;
+    }
+
+    .hero-inner {
+        width: 100%;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 320px;
+        margin: 5px 0;
+    }
+
+
+    /* SECTIONS */
+
+    .section {
+        padding: 40px 15px;
+    }
+
+    .section-inner {
+        width: 100%;
+    }
+
+    .section-title {
+        margin-bottom: 30px;
+    }
+
+    .section-title h1 {
+        font-size: 30px;
+    }
+
+    .section-title h2 {
+        font-size: 27px;
+    }
+
+
+    /* PROPERTY CARDS */
+
+    .property-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .property-card {
+        width: 100%;
+    }
+
+    .property-image {
+        height: auto;
+        max-height: 300px;
+        object-fit: cover;
+    }
+
+
+    /* DETAIL PAGE */
+
+    .detail-grid {
         grid-template-columns: 1fr;
     }
 
+    .detail-image {
+        max-height: 350px;
+    }
+
+
+    /* OFFICES */
+
+    .office-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* FORMS */
+
+    .form-container {
+        width: 100%;
+        max-width: 100%;
+        padding: 22px 16px;
+    }
+
+    .review-form-card {
+        width: 100%;
+        padding: 25px 16px;
+    }
+
+    .form-container form input,
+    .form-container form textarea,
+    .form-container form select {
+        width: 100%;
+        max-width: 100%;
+    }
+
+
+    /* CAREERS */
+
+    .career-position {
+        width: 100%;
+        padding: 20px 15px;
+    }
+
+    .career-position .form-container {
+        width: 100%;
+        padding: 22px 15px;
+    }
+
+
+    /* LEADERSHIP */
+
+    .leadership-section {
+        margin-top: 35px;
+        margin-bottom: 25px;
+    }
+
+    .leadership-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .leadership-card {
+        width: 280px;
+        max-width: 100%;
+    }
+
     .leadership-photo {
-        height: 300px;
+        width: auto;
+        max-width: 180px;
+        height: auto;
+        max-height: 260px;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+    }
+
+
+    /* FOOTER */
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .copyright {
+        padding: 18px 15px;
     }
 
 }
-
