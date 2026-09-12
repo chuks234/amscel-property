@@ -7,11 +7,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
+
 <title>{% block title %}AMSCEL PROPERTY LIMITED{% endblock %}</title>
 
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-```
+<!-- AMSCEL Browser Tab Icon -->
+<link rel="icon"
+      type="image/jpeg"
+      href="{% static 'images/amscel-logo.jpg' %}">
+
+<link rel="stylesheet"
+      href="{% static 'css/style.css' %}">
+
 
 </head>
 
@@ -19,47 +25,47 @@
 
 <header class="site-header">
 
-```
 <div class="container">
 
-    <div class="navbar">
 
-        <a href="/" class="brand">
-            <img src="{% static 'images/amscel-logo.jpg' %}"
-                 alt="AMSCEL PROPERTY LIMITED">
+<div class="navbar">
+
+    <a href="/" class="brand">
+        <img src="{% static 'images/amscel-logo.jpg' %}"
+             alt="AMSCEL PROPERTY LIMITED">
+    </a>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/land/">Land</a>
+        <a href="/houses/">Houses</a>
+        <a href="/investment/">Investment</a>
+        <a href="/career/">Careers</a>
+        <a href="/about/">About Us</a>
+        <a href="/offices/">Offices</a>
+        <a href="/contact/">Contact Us</a>
+    </nav>
+
+    <a href="/admin/" class="admin-link">
+        Admin
+    </a>
+
+    <div class="review-links">
+
+        <a href="{% url 'company_reviews' %}">
+            View Client Reviews
         </a>
 
-        <nav>
-            <a href="/">Home</a>
-            <a href="/land/">Land</a>
-            <a href="/houses/">Houses</a>
-            <a href="/investment/">Investment</a>
-            <a href="/career/">Careers</a>
-            <a href="/about/">About Us</a>
-            <a href="/offices/">Offices</a>
-            <a href="/contact/">Contact Us</a>
-        </nav>
-
-        <a href="/admin/" class="admin-link">
-            Admin
+        <a href="{% url 'rate_amscel' %}">
+            Rate AMSCEL
         </a>
-
-        <div class="review-links">
-
-            <a href="{% url 'company_reviews' %}">
-                View Client Reviews
-            </a>
-
-            <a href="{% url 'rate_amscel' %}">
-                Rate AMSCEL
-            </a>
-
-        </div>
 
     </div>
 
 </div>
-```
+
+
+</div>
 
 </header>
 
@@ -70,36 +76,36 @@
 
 <footer class="site-footer">
 
-```
 <div class="container footer-grid">
 
-    <div>
-        <h3>AMSCEL PROPERTY LIMITED</h3>
-        <p>
-            Trusted land and property solutions in Abuja, Nigeria.
-        </p>
-    </div>
 
-    <div>
-        <h3>Quick Links</h3>
-        <a href="/land/">Land for Sale</a>
-        <a href="/houses/">Houses</a>
-        <a href="/about/">About Us</a>
-        <a href="/contact/">Contact</a>
-    </div>
+<div>
+    <h3>AMSCEL PROPERTY LIMITED</h3>
+    <p>
+        Trusted land and property solutions in Abuja, Nigeria.
+    </p>
+</div>
 
-    <div>
-        <h3>Contact</h3>
-        <p>Abuja, Nigeria</p>
-        <a href="/offices/">Our Offices</a>
-    </div>
+<div>
+    <h3>Quick Links</h3>
+    <a href="/land/">Land for Sale</a>
+    <a href="/houses/">Houses</a>
+    <a href="/about/">About Us</a>
+    <a href="/contact/">Contact</a>
+</div>
+
+<div>
+    <h3>Contact</h3>
+    <p>Abuja, Nigeria</p>
+    <a href="/offices/">Our Offices</a>
+</div>
+```
 
 </div>
 
 <div class="copyright">
     © 2026 AMSCEL PROPERTY LIMITED. All rights reserved.
 </div>
-```
 
 </footer>
 
