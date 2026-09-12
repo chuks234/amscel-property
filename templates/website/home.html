@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% block title %}AMSCEL PROPERTY LIMITED | Abuja Real Estate{% endblock %}
@@ -181,4 +182,80 @@
 </section>
 
 
+<section class="section leadership-section">
+
+    <div class="section-inner">
+
+        <div class="section-title">
+
+            <h2>OUR LEADERSHIP TEAM</h2>
+
+            <p>
+                Meet the dedicated professionals leading
+                AMSCEL PROPERTY LIMITED.
+            </p>
+
+        </div>
+
+
+        <div class="leadership-grid">
+
+            {% for person in leadership %}
+
+            <div class="leadership-card">
+
+                {% if person.photo %}
+
+                <img
+                    src="{{ person.photo.url }}"
+                    alt="{{ person.name }}"
+                    class="leadership-photo"
+                >
+
+                {% endif %}
+
+
+                <div class="leadership-content">
+
+                    <h3>{{ person.name }}</h3>
+
+                    <p class="leadership-position">
+                        {{ person.position }}
+                    </p>
+
+                    <p>
+                        <strong>Phone:</strong>
+                        <a href="tel:{{ person.phone }}">
+                            {{ person.phone }}
+                        </a>
+                    </p>
+
+                    <p>
+                        <strong>Email:</strong>
+                        <a href="mailto:{{ person.email }}">
+                            {{ person.email }}
+                        </a>
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <p>
+                Our leadership team information will be
+                available soon.
+            </p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
 {% endblock %}
+

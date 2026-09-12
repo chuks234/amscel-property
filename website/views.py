@@ -1,10 +1,11 @@
+
 from django.shortcuts import render, redirect
 
 from offices.models import Office
 from properties.models import Property
 from enquiries.models import Enquiry
 from .forms import CompanyReviewForm
-from .models import CompanyReview
+from .models import CompanyReview, CompanyLeadership
 
 
 def home(request):
@@ -14,10 +15,17 @@ def home(request):
         featured=True
     )[:6]
 
+    leadership = CompanyLeadership.objects.filter(
+        is_active=True
+    )
+
     return render(
         request,
         "website/home.html",
-        {"properties": properties}
+        {
+            "properties": properties,
+            "leadership": leadership,
+        }
     )
 
 
@@ -92,3 +100,4 @@ def rate_amscel(request):
         "website/rate_amscel.html",
         {"form": form}
     )
+
