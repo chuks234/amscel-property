@@ -1,16 +1,15 @@
-
 from django.shortcuts import render, redirect
 
 from offices.models import Office
 from properties.models import Property
 from enquiries.models import Enquiry
+from clients.models import Client
 from .forms import CompanyReviewForm
 from .models import CompanyReview, CompanyLeadership
 
 
 def home(request):
     properties = Property.objects.filter(
-        property_type="land",
         status="available",
         featured=True
     )[:6]
@@ -19,12 +18,32 @@ def home(request):
         is_active=True
     )
 
+    available_properties = Property.objects.filter(
+        status="available"
+    ).count()
+
+    available_land = Property.objects.filter(
+        property_type="land",
+        status="available"
+    ).count()
+
+    available_houses = Property.objects.filter(
+        property_type="house",
+        status="available"
+    ).count()
+
+    active_clients = Client.objects.count()
+
     return render(
         request,
         "website/home.html",
         {
             "properties": properties,
             "leadership": leadership,
+            "available_properties": available_properties,
+            "available_land": available_land,
+            "available_houses": available_houses,
+            "active_clients": active_clients,
         }
     )
 
@@ -100,4 +119,3 @@ def rate_amscel(request):
         "website/rate_amscel.html",
         {"form": form}
     )
-

@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 
 {% block title %}AMSCEL PROPERTY LIMITED | Abuja Real Estate{% endblock %}
@@ -7,52 +6,67 @@
 
 <section class="hero">
 
-    <div class="hero-inner">
 
-        <h1>Find Your Perfect Property</h1>
+<div class="hero-inner">
 
-        <p>
-            Discover quality land and property opportunities
-            in Abuja, Nigeria with AMSCEL PROPERTY LIMITED.
-        </p>
+    <h1>Find Your Perfect Property</h1>
 
-        <div class="hero-buttons">
+    <p>
+        Discover quality land and property opportunities
+        in Abuja, Nigeria with AMSCEL PROPERTY LIMITED.
+    </p>
 
-            <a href="/land/" class="btn btn-primary">
-                Explore Land for Sale
-            </a>
+    <div class="hero-buttons">
 
-            <a href="/houses/" class="btn btn-secondary">
-                Houses
-            </a>
+        <a href="/land/" class="btn btn-primary">
+            Explore Available Land Locations
+        </a>
 
-        </div>
+        <a href="/houses/" class="btn btn-secondary">
+            Apartments
+        </a>
 
     </div>
 
+</div>
+
+
 </section>
 
+<!-- FEATURED PROPERTY OPPORTUNITIES -->
 
 <section class="section">
 
-    <div class="section-inner">
 
-        <div class="section-title">
+<div class="section-inner">
 
-            <h2>Featured Land</h2>
+    <div class="section-title">
 
-            <p>
-                Explore our available land opportunities.
-            </p>
+        <h2>FEATURED PROPERTY OPPORTUNITIES</h2>
 
-        </div>
+        <p>
+            Explore our latest available property opportunities.
+        </p>
+
+    </div>
 
 
-        <div class="property-grid">
+    <div class="featured-slider-wrapper">
+
+        <button
+            type="button"
+            class="featured-slider-button featured-slider-prev"
+            aria-label="Previous property"
+        >
+            &#10094;
+        </button>
+
+
+        <div class="featured-slider">
 
             {% for property in properties %}
 
-            <article class="property-card">
+            <article class="property-card featured-slide">
 
                 {% for image in property.images.all %}
 
@@ -87,6 +101,10 @@
                         ₦{{ property.price|floatformat:0 }}
                     </p>
 
+                    <p class="property-type">
+                        {{ property.get_property_type_display }}
+                    </p>
+
                     <a
                         href="{% url 'property_detail' property.pk %}"
                         class="btn btn-primary"
@@ -100,162 +118,549 @@
 
             {% empty %}
 
-            <p>No available land at the moment.</p>
+            <p>
+                No featured properties are available at the moment.
+            </p>
 
             {% endfor %}
 
         </div>
 
+
+        <button
+            type="button"
+            class="featured-slider-button featured-slider-next"
+            aria-label="Next property"
+        >
+            &#10095;
+        </button>
+
     </div>
+
+</div>
+
 
 </section>
 
+<!-- DYNAMIC PROPERTY STATISTICS -->
+
+<section class="section property-statistics-section">
+
+
+<div class="section-inner">
+
+    <div class="section-title">
+
+        <h2>AMSCEL PROPERTY AT A GLANCE</h2>
+
+        <p>
+            Our current property and client statistics.
+        </p>
+
+    </div>
+
+
+    <div class="property-statistics-grid">
+
+
+        <div class="stat-box">
+
+            <div class="stat-number">
+                {{ available_properties }}
+            </div>
+
+            <div class="stat-label">
+                Available Properties
+            </div>
+
+        </div>
+
+
+        <div class="stat-box">
+
+            <div class="stat-number">
+                {{ available_land }}
+            </div>
+
+            <div class="stat-label">
+                Land Opportunities
+            </div>
+
+        </div>
+
+
+        <div class="stat-box">
+
+            <div class="stat-number">
+                {{ available_houses }}
+            </div>
+
+            <div class="stat-label">
+                Houses Available
+            </div>
+
+        </div>
+
+
+        <div class="stat-box">
+
+            <div class="stat-number">
+                {{ active_clients }}
+            </div>
+
+            <div class="stat-label">
+                Active Clients
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- WHY CHOOSE AMSCEL -->
 
 <section class="section">
 
-    <div class="section-inner">
 
-        <div class="section-title">
+<div class="section-inner">
 
-            <h2>Why Choose AMSCEL?</h2>
+    <div class="section-title">
+
+        <h2>Why Choose AMSCEL?</h2>
+
+        <p>
+            Professional support from property search
+            to inspection.
+        </p>
+
+    </div>
+
+
+    <div class="property-grid">
+
+        <div class="detail-box">
+
+            <h3>Quality Properties</h3>
 
             <p>
-                Professional support from property search
-                to inspection.
+                Discover property opportunities
+                in strategic locations.
             </p>
 
         </div>
 
 
-        <div class="property-grid">
+        <div class="detail-box">
 
-            <div class="detail-box">
-                <h3>Quality Properties</h3>
-                <p>
-                    Discover property opportunities
-                    in strategic locations.
-                </p>
-            </div>
-
-            <div class="detail-box">
-                <h3>Property Inspection</h3>
-                <p>
-                    Schedule an inspection before
-                    making your decision.
-                </p>
-            </div>
-
-            <div class="detail-box">
-                <h3>Professional Support</h3>
-                <p>
-                    Our team is available to assist
-                    you with your property enquiry.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<section class="section">
-
-    <div class="section-inner">
-
-        <div class="section-title">
-
-            <h2>What Our Clients Say</h2>
+            <h3>Property Inspection</h3>
 
             <p>
-                Hear from clients who have experienced
-                AMSCEL PROPERTY LIMITED.
+                Schedule an inspection before
+                making your decision.
             </p>
 
         </div>
 
 
+        <div class="detail-box">
+
+            <h3>Professional Support</h3>
+
+            <p>
+                Our team is available to assist
+                you with your property enquiry.
+            </p>
+
+        </div>
 
     </div>
 
+</div>
+
+
 </section>
 
+<!-- CLIENT REVIEWS -->
+
+<section class="section">
+
+<div class="section-inner">
+
+    <div class="section-title">
+
+        <h2>What Our Clients Say</h2>
+
+        <p>
+            Hear from clients who have experienced
+            AMSCEL PROPERTY LIMITED.
+        </p>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- LEADERSHIP -->
 
 <section class="section leadership-section">
 
-    <div class="section-inner">
+<div class="section-inner">
 
-        <div class="section-title">
+    <div class="section-title">
 
-            <h2>OUR LEADERSHIP TEAM</h2>
+        <h2>OUR LEADERSHIP TEAM</h2>
 
-            <p>
-                Meet the dedicated professionals leading
-                AMSCEL PROPERTY LIMITED.
-            </p>
-
-        </div>
-
-
-        <div class="leadership-grid">
-
-            {% for person in leadership %}
-
-            <div class="leadership-card">
-
-                {% if person.photo %}
-
-                <img
-                    src="{{ person.photo.url }}"
-                    alt="{{ person.name }}"
-                    class="leadership-photo"
-                >
-
-                {% endif %}
-
-
-                <div class="leadership-content">
-
-                    <h3>{{ person.name }}</h3>
-
-                    <p class="leadership-position">
-                        {{ person.position }}
-                    </p>
-
-                    <p>
-                        <strong>Phone:</strong>
-                        <a href="tel:{{ person.phone }}">
-                            {{ person.phone }}
-                        </a>
-                    </p>
-
-                    <p>
-                        <strong>Email:</strong>
-                        <a href="mailto:{{ person.email }}">
-                            {{ person.email }}
-                        </a>
-                    </p>
-
-                </div>
-
-            </div>
-
-            {% empty %}
-
-            <p>
-                Our leadership team information will be
-                available soon.
-            </p>
-
-            {% endfor %}
-
-        </div>
+        <p>
+            Meet the dedicated professionals leading
+            AMSCEL PROPERTY LIMITED.
+        </p>
 
     </div>
 
+
+    <div class="leadership-grid">
+
+        {% for person in leadership %}
+
+        <div class="leadership-card">
+
+            {% if person.photo %}
+
+            <img
+                src="{{ person.photo.url }}"
+                alt="{{ person.name }}"
+                class="leadership-photo"
+            >
+
+            {% endif %}
+
+
+            <div class="leadership-content">
+
+                <h3>{{ person.name }}</h3>
+
+                <p class="leadership-position">
+                    {{ person.position }}
+                </p>
+
+                <p>
+                    <strong>Phone:</strong>
+                    <a href="tel:{{ person.phone }}">
+                        {{ person.phone }}
+                    </a>
+                </p>
+
+                <p>
+                    <strong>Email:</strong>
+                    <a href="mailto:{{ person.email }}">
+                        {{ person.email }}
+                    </a>
+                </p>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <p>
+            Our leadership team information will be
+            available soon.
+        </p>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
 </section>
 
+<!-- FEATURED PROPERTY SLIDER + STATISTICS STYLES -->
+
+<style>
+
+/* FEATURED PROPERTY SLIDER */
+
+.featured-slider-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.featured-slider {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+
+.featured-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.featured-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 100%;
+    scroll-snap-align: start;
+    box-sizing: border-box;
+}
+
+.featured-slider .property-card {
+    width: 100%;
+    max-width: 100%;
+}
+
+.featured-slider-button {
+    flex: 0 0 auto;
+    border: none;
+    background: #111;
+    color: white;
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.featured-slider-button:hover {
+    opacity: 0.8;
+}
+
+.property-type {
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+
+/* PROPERTY STATISTICS */
+
+.property-statistics-section {
+    background: #111;
+}
+
+.property-statistics-section .section-title h2,
+.property-statistics-section .section-title p {
+    color: white;
+}
+
+.property-statistics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.stat-box {
+    background: white;
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.stat-number {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #000000;
+}
+
+.stat-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+}
+
+
+/* TABLET */
+
+@media (max-width: 900px) {
+
+    .property-statistics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .featured-slider-wrapper {
+        gap: 8px;
+    }
+
+    .featured-slider-button {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        font-size: 18px;
+    }
+
+    .property-statistics-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+<!-- FEATURED PROPERTY SLIDER SCRIPT -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const slider = document.querySelector(".featured-slider");
+
+    const previousButton = document.querySelector(
+        ".featured-slider-prev"
+    );
+
+    const nextButton = document.querySelector(
+        ".featured-slider-next"
+    );
+
+    const slides = document.querySelectorAll(
+        ".featured-slide"
+    );
+
+
+    if (
+        !slider ||
+        !previousButton ||
+        !nextButton ||
+        slides.length === 0
+    ) {
+        return;
+    }
+
+
+    let currentSlide = 0;
+
+
+    function showSlide(index) {
+
+        if (index < 0) {
+            index = slides.length - 1;
+        }
+
+        if (index >= slides.length) {
+            index = 0;
+        }
+
+        currentSlide = index;
+
+
+        slider.scrollTo({
+            left: slider.clientWidth * currentSlide,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    /* PREVIOUS BUTTON */
+
+    previousButton.addEventListener(
+        "click",
+        function () {
+
+            showSlide(currentSlide - 1);
+
+        }
+    );
+
+
+    /* NEXT BUTTON */
+
+    nextButton.addEventListener(
+        "click",
+        function () {
+
+            showSlide(currentSlide + 1);
+
+        }
+    );
+
+
+    /* AUTOMATIC SLIDE */
+
+    let autoSlide = setInterval(
+        function () {
+
+            showSlide(currentSlide + 1);
+
+        },
+        5000
+    );
+
+
+    /* STOP AUTO SLIDE WHEN MOUSE IS OVER SLIDER */
+
+    slider.addEventListener(
+        "mouseenter",
+        function () {
+
+            clearInterval(autoSlide);
+
+        }
+    );
+
+
+    /* START AUTO SLIDE AGAIN */
+
+    slider.addEventListener(
+        "mouseleave",
+        function () {
+
+            autoSlide = setInterval(
+                function () {
+
+                    showSlide(currentSlide + 1);
+
+                },
+                5000
+            );
+
+        }
+    );
+
+
+    /* KEEP CURRENT SLIDE AFTER WINDOW RESIZE */
+
+    window.addEventListener(
+        "resize",
+        function () {
+
+            slider.scrollTo({
+                left: slider.clientWidth * currentSlide,
+                behavior: "auto"
+            });
+
+        }
+    );
+
+});
+
+</script>
 
 {% endblock %}
-
